@@ -22,10 +22,9 @@ public class UsersController {
     @Autowired
     UserService userService;
 
-//    @PreAuthorize("hasRole('" + Constants.ADMIN_ROLE_NAME + "')")
-//    @Secured(Constants.ADMIN_ROLE_NAME)
+
     @GetMapping()
-    public ResponseEntity<List<UserDto>> getUsers(Authentication authentication){
+    public ResponseEntity<List<UserDto>> getUsers(){
         List<User> users = userService.getUsers();
         List<UserDto> response = users.stream().map(UserDto::mapToDto).toList();
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -43,6 +42,6 @@ public class UsersController {
     public ResponseEntity<UserDto> deleteUser(@PathVariable(name = "id")Integer id){
         UserDto response = userService.deleteUser(id);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

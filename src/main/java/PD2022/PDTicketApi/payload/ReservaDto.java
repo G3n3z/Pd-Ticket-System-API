@@ -15,7 +15,6 @@ import java.util.List;
 @Data
 public class ReservaDto {
 
-    int id;
     String data_hora;
     int pago;
     int id_utilizador;
@@ -29,7 +28,7 @@ public class ReservaDto {
         dto.data_hora = r.getData_hora();
         dto.espetaculo_id = r.getEspetaculo().getId();
         dto.pago = r.getPago();
-        //dto.id_utilizador = r.getId_utilizador();
+        dto.id_utilizador = r.getUtilizador().getId();
         dto.lugares = r.getLugares().stream().map(LugarDto::mapToDto).toList();
         return dto;
     }

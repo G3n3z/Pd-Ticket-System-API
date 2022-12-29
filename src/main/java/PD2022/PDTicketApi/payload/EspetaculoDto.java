@@ -41,8 +41,8 @@ public class EspetaculoDto {
         e.pais = espetaculo.getPais();
         e.tipo = espetaculo.getTipo();
         e.visivel = espetaculo.getVisivel();
-        //e.reservas = espetaculo.getReservas().stream().map(ReservaDto::mapToDto).toList();
-        //e.lugares = espetaculo.getLugares().stream().map(LugarDto::mapToDto).toList();
+//        e.reservas = espetaculo.getReservas().stream().map(ReservaDto::mapToDto).toList();
+//        e.lugares = espetaculo.getLugares().stream().map(LugarDto::mapToDto).toList();
         return e;
     }
 

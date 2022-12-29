@@ -1,10 +1,12 @@
 package PD2022.PDTicketApi.controllers;
 
+import PD2022.PDTicketApi.annotation.DateFormat;
 import PD2022.PDTicketApi.exception.ApiException;
 import PD2022.PDTicketApi.model.Espetaculo;
 import PD2022.PDTicketApi.payload.EspetaculoDto;
 import PD2022.PDTicketApi.services.EspetaculoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +33,7 @@ public class EspetaculosController {
 
     @GetMapping()
     public ResponseEntity<List<EspetaculoDto>> espectaculos(@RequestParam(name = "dataInicio", required = false)Date dataInicio,
-                                                            @RequestParam(name = "dataFim", required = false)Date dataFim){
+                                                            @RequestParam(name = "dataFim", required = false)@DateFormat(formatsToTry = {"yyyy/MM/dd HH:mm:ss","yyyy/MM/dd"})Date dataFim){
 
         List<Espetaculo> espetaculos;
         List<EspetaculoDto> dto = new ArrayList<>();
@@ -48,6 +56,7 @@ public class EspetaculosController {
         }
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
 
 
 }

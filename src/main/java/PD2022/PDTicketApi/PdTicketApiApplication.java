@@ -1,5 +1,6 @@
 package PD2022.PDTicketApi;
 
+import PD2022.PDTicketApi.annotation.DateFormatAnnotationFormatterFactory;
 import PD2022.PDTicketApi.constants.Constants;
 import PD2022.PDTicketApi.security.RsaKeyProperties;
 import PD2022.PDTicketApi.security.UserAuthenticationProvider;
@@ -14,6 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,6 +29,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
@@ -117,6 +120,13 @@ public class PdTicketApiApplication {
 		return jac;
 	}
 
+	@Configuration
+	public class MvcConfig implements WebMvcConfigurer {
+		@Override
+		public void addFormatters(FormatterRegistry registry) {
+			registry.addFormatterForFieldAnnotation(new DateFormatAnnotationFormatterFactory());
+		}
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(PdTicketApiApplication.class, args);
 	}
