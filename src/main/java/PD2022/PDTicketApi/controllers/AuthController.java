@@ -23,14 +23,4 @@ public class AuthController {
         return tokenService.generateToken(authentication);
     }
 
-    @GetMapping("/test")
-    public String test(Authentication authentication)
-    {
-        return authentication.getName();
-    }
-    @GetMapping("/xxx")
-    public String xxx()
-    {
-        return "ok";
-    }
 }
