@@ -59,7 +59,7 @@ public class PdTicketApiApplication {
 		{
 			return http
 					.csrf(csrf -> csrf.disable())
-					.securityMatcher("/xxx")
+					.securityMatcher("/espectaculos")
 					.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()).build();
 		}
 
