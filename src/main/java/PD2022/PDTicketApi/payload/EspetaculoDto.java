@@ -29,7 +29,7 @@ public class EspetaculoDto {
     List<ReservaDto> reservas = new ArrayList<>();
 
 
-    public static EspetaculoDto mapToDto(Espetaculo espetaculo){
+    public static EspetaculoDto mapToDto(Espetaculo espetaculo, Boolean details){
         EspetaculoDto e = new EspetaculoDto();
         e.classificacao_etaria = espetaculo.getClassificacao_etaria();
         e.descricao = espetaculo.getDescricao();
@@ -41,8 +41,10 @@ public class EspetaculoDto {
         e.pais = espetaculo.getPais();
         e.tipo = espetaculo.getTipo();
         e.visivel = espetaculo.getVisivel();
-//        e.reservas = espetaculo.getReservas().stream().map(ReservaDto::mapToDto).toList();
-//        e.lugares = espetaculo.getLugares().stream().map(LugarDto::mapToDto).toList();
+        if(details != null && details){
+            e.reservas = espetaculo.getReservas().stream().map(ReservaDto::mapToDto).toList();
+            e.lugares = espetaculo.getLugares().stream().map(LugarDto::mapToDto).toList();
+        }
         return e;
     }
 

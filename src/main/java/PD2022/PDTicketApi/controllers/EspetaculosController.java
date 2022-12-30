@@ -33,7 +33,8 @@ public class EspetaculosController {
 
     @GetMapping()
     public ResponseEntity<List<EspetaculoDto>> espectaculos(@RequestParam(name = "dataInicio", required = false)Date dataInicio,
-                                                            @RequestParam(name = "dataFim", required = false)@DateFormat(formatsToTry = {"yyyy/MM/dd HH:mm:ss","yyyy/MM/dd"})Date dataFim){
+                                                            @RequestParam(name = "dataFim", required = false)@DateFormat(formatsToTry = {"yyyy/MM/dd HH:mm:ss","yyyy/MM/dd"})Date dataFim,
+                                                            @RequestParam(name = "details", required = false )Boolean details){
 
         List<Espetaculo> espetaculos;
         List<EspetaculoDto> dto = new ArrayList<>();
@@ -52,7 +53,7 @@ public class EspetaculosController {
             espetaculos = espetaculoService.getEspetaculos();
         }
         if(espetaculos != null){
-            dto = espetaculos.stream().map(EspetaculoDto::mapToDto).toList();
+            dto = espetaculos.stream().map(e -> EspetaculoDto.mapToDto(e, details)).toList();
         }
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
