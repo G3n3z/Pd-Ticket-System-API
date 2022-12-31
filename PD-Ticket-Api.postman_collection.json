@@ -232,7 +232,85 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reservas Pagas User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_user_daniel}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reservas?estado=pagas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "pagas"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReservasNaoPagas User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_user_daniel}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reservas?estado=naopagas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "naopagas"
+								}
+							]
 						}
 					},
 					"response": []
@@ -276,19 +354,33 @@
 		{
 			"name": "Reservas Pagas Admin",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_admin}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/reservas/Details/Pagas",
+					"raw": "http://localhost:8080/reservas?estado=pagas",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"reservas",
-						"Details",
-						"Pagas"
+						"reservas"
+					],
+					"query": [
+						{
+							"key": "estado",
+							"value": "pagas"
+						}
 					]
 				}
 			},
@@ -310,16 +402,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/reservas/Details/NaoPagas",
+					"raw": "http://localhost:8080/reservas?estado=naopagas",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"reservas",
-						"Details",
-						"NaoPagas"
+						"reservas"
+					],
+					"query": [
+						{
+							"key": "estado",
+							"value": "naopagas"
+						}
 					]
 				}
 			},
