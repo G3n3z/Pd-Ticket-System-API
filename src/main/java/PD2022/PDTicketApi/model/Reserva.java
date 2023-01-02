@@ -6,13 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Getter
